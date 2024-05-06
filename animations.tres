@@ -1,0 +1,32 @@
+[gd_resource type="AnimationLibrary" load_steps=4 format=3 uid="uid://d6216s8haljk"]
+
+[sub_resource type="Animation" id="Animation_ehfta"]
+resource_name = "fire"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_fire"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2fmih"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_jqk0j"]
+resource_name = "trigger"
+length = 0.2
+
+[resource]
+_data = {
+"fire": SubResource("Animation_ehfta"),
+"idle": SubResource("Animation_2fmih"),
+"trigger": SubResource("Animation_jqk0j")
+}

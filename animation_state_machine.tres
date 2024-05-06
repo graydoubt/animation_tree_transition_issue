@@ -1,0 +1,51 @@
+[gd_resource type="AnimationNodeStateMachine" load_steps=11 format=3 uid="uid://pck876la0d76"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3i8e5"]
+animation = &"fire"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_edprv"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_2rysd"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_3i8e5")
+nodes/Animation/position = Vector2(-100, 140)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_edprv")
+nodes/TimeScale/position = Vector2(80, 140)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ioact"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p53fe"]
+animation = &"trigger"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jrn7w"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_543h6"]
+advance_mode = 2
+advance_expression = "triggered"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0c6uy"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not triggered
+or automatic"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s2na7"]
+advance_mode = 0
+advance_expression = "triggered"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ww4ah"]
+switch_mode = 2
+advance_mode = 2
+
+[resource]
+states/Start/position = Vector2(241, 100)
+states/fire/node = SubResource("AnimationNodeBlendTree_2rysd")
+states/fire/position = Vector2(620, 100)
+states/idle/node = SubResource("AnimationNodeAnimation_ioact")
+states/idle/position = Vector2(437, 100)
+states/trigger/node = SubResource("AnimationNodeAnimation_p53fe")
+states/trigger/position = Vector2(514, 23)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_jrn7w"), "idle", "fire", SubResource("AnimationNodeStateMachineTransition_543h6"), "fire", "idle", SubResource("AnimationNodeStateMachineTransition_0c6uy"), "idle", "trigger", SubResource("AnimationNodeStateMachineTransition_s2na7"), "trigger", "fire", SubResource("AnimationNodeStateMachineTransition_ww4ah")]
+graph_offset = Vector2(-9, -44)
